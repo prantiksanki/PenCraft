@@ -19,6 +19,8 @@ import { Client, Account, ID } from 'appwrite';
 // ********************* OR THIS ********************
 
 export class AuthService{
+
+    
     client = new Client(); 
 
     account; 
@@ -70,7 +72,7 @@ export class AuthService{
             return await this.account.createEmailPasswordSession(email, password) ;
 
         }
-        catch
+        catch (error)
         {
             throw error ;
         }
@@ -88,17 +90,18 @@ export class AuthService{
         }
     }
 
-    async getCurrentUser()
-    {
-        try
-        {
-            return await this.account.get();
+    async getCurrentUser() {
+        if (!conf.appwriteUrl || !conf.appwriteProjectId) {
+            throw new Error("Appwrite URL or Project ID is missing in conf file.");
         }
-        catch(error)
-        {
-            throw error ;
+
+        try {
+            return await this.account.get();
+        } catch (error) {
+            return null; 
         }
     }
+    
 } 
 
 const authService = new AuthService(); 
