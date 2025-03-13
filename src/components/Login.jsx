@@ -6,7 +6,6 @@ import {useDispatch} from "react-redux"
 import authService from "../appwrite/auth"
 import {useForm} from "react-hook-form"
 
-// #####      USED HOOK ------>    REACT HOOK FORM      #####
 
 function Login() {
     const navigate = useNavigate()
@@ -48,16 +47,7 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
-
-
-        
-
-        {/* ######## Displays an error message if the error state is populated. ####### */}
         {error && <p className="mt-8 text-center text-red-600">{error}</p>}
-
-        
-
-        
         <form onSubmit={handleSubmit(login)} className='mt-8'>
             <div className='space-y-5'>
                 <Input

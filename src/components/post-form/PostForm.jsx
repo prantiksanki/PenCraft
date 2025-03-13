@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE, Select } from "../index";
+import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -22,8 +22,7 @@ export default function PostForm({ post }) {
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
-            if (file) 
-            {
+            if (file) {
                 appwriteService.deleteFile(post.featuredImage);
             }
 
@@ -32,17 +31,13 @@ export default function PostForm({ post }) {
                 featuredImage: file ? file.$id : undefined,
             });
 
-            if (dbPost) 
-            {
+            if (dbPost) {
                 navigate(`/post/${dbPost.$id}`);
             }
-        } 
-        
-        else {
+        } else {
             const file = await appwriteService.uploadFile(data.image[0]);
 
-            if (file) 
-            {
+            if (file) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
@@ -75,13 +70,6 @@ export default function PostForm({ post }) {
         return () => subscription.unsubscribe();
     }, [watch, slugTransform, setValue]);
 
-
-
-
-
-
-
-    
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
