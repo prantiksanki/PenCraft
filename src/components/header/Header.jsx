@@ -5,7 +5,7 @@ import {useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 function Header() {
-  const authStatus = useSelector((state) => state.auth.status)
+  const authStatus = useSelector((state) => state.auth.status)          // useSelector ->  Redux status check function 
   const navigate = useNavigate()
 
   const navItems = [
@@ -18,35 +18,43 @@ function Header() {
       name: "Login",
       slug: "/login",
       active: !authStatus,
-  },
-  {
+    },
+    {
       name: "Signup",
       slug: "/signup",
       active: !authStatus,
-  },
-  {
+    },
+    {
       name: "All Posts",
       slug: "/all-posts",
       active: authStatus,
-  },
-  {
+    },
+    {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
-  },
+    },
   ]
 
 
   return (
     <header className='py-3 bg-gray-500 shadow'>
       <Container>
+        
+        {/* ###########  NAV BAR START   #########*/}
         <nav className='flex'>
+
+
+        {/*###########  LOGO ADD   ###########*/}
           <div className='mr-4'>
             <Link to='/'>
-              <Logo width='70px'   />
-
+              <Logo width='70px'/>
+              
               </Link>
           </div>
+
+
+          {/* ##############  HEADER ELEMENTS INITIALIZE   ############*/}
           <ul className='flex ml-auto'>
             {navItems.map((item) => 
             item.active ? (
@@ -65,7 +73,7 @@ function Header() {
              
             *************************************************************
             {condition && ()} 
-            => HERE IF CONDITION IS TRUE THEN CODE UNDER () WILL EXECUTE 
+            => HERE IF, CONDITION WILL TRUE THEN CODE UNDER (), WILL EXECUTE 
             
             *************************************************************
             */}
