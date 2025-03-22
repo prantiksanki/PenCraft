@@ -18,6 +18,7 @@ export default function Protected({children, authentication = true}) {
         // }
         
         //let authValue = authStatus === true ? true : false
+        
 
         if(authentication && authStatus !== authentication){
             navigate("/login")
